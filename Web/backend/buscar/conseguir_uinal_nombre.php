@@ -36,7 +36,10 @@ if ($reversa) {
 
 $Query = $conn->query("SELECT nombre FROM uinal WHERE idweb=".$mes." ;");
 $row = mysqli_fetch_assoc($Query);
+$Query1 = $conn->query("SELECT nombre FROM kin WHERE iddesk=".$dia." ;");
+$row1 = mysqli_fetch_assoc($Query1);
 $uinal = $row['nombre']." ";
-return array($uinal.strval($dia),$row['nombre']);
+$kin = $row1['nombre'];
+return array($uinal.strval($dia),$row['nombre'],$kin);
 
 ?>
