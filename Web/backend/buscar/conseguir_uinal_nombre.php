@@ -37,6 +37,6 @@ if ($reversa) {
 $Query = $conn->query("SELECT nombre FROM uinal WHERE idweb=".$mes." ;");
 $row = mysqli_fetch_assoc($Query);
 $uinal = $row['nombre']." ";
-return $uinal.strval($dia);
+return array($uinal.strval($dia),$row['nombre']);
 
 ?>

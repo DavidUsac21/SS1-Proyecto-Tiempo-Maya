@@ -13,6 +13,7 @@ $nahual = include 'backend/buscar/conseguir_nahual_nombre.php';
 $energia = include 'backend/buscar/conseguir_energia_numero.php';
 $haab = include 'backend/buscar/conseguir_uinal_nombre.php';
 $cuenta_larga = include 'backend/buscar/conseguir_fecha_cuenta_larga.php';
+$nahual1 = $nahual;
 $cholquij = $nahual." ". strval($energia);
 
 ?>
@@ -46,26 +47,39 @@ $cholquij = $nahual." ". strval($energia);
                     </form>
 
                     <div id="tabla">
-                        <table class="table table-dark table-striped">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">Calendario</th>
-                                    <th scope="col" style="width: 60%;">Fecha</th>
-
+                                    <th scope="col" style="width: 30%;">Fecha</th>
+                                    <th scope="col" style="width: 30%;">Referencia</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th scope="row">Calendario Haab</th>
-                                    <td ><?php echo isset($haab) ? $haab : ''; ?></td>
+                                    <td ><?php echo isset($haab[0]) ? $haab[0] : ''; ?></td>
+                                    <td>
+                                    <?php 
+                                    $stringPrint.="<a href=\"models/paginaModeloElemento.php?elemento=uinal#".str_replace("'",'',$haab[1])."\">     <img src=\"./imagenes/uinal/".$haab[1].".png\" width=\"50\"></a>";
+                                    echo $stringPrint;
+                                    ?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Calendario Cholquij</th>
                                     <td><?php echo isset($cholquij) ? $cholquij : ''; ?></td>
+                                    <td>
+                                    <?php 
+                                    $stringPrint1.="<a href=\"models/paginaModeloElemento.php?elemento=nahual#".str_replace("'",'',$nahual1)."\">     <img src=\"./imagenes/nahual/".$nahual1.".png\" width=\"50\"></a>";
+                                    echo $stringPrint1;
+                                    ?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Cuenta Larga</th>
                                     <td><?php echo isset($cuenta_larga) ? $cuenta_larga : ''; ?></td>
+                                    <td>------------</tc>
                                 </tr>
                             </tbody>
                         </table>

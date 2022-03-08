@@ -1,10 +1,10 @@
 <?php
 
 $conn = include '../conexion/conexion.php';
-$uinalesNav = $conn->query("SELECT nombre FROM tiempo_maya.uinal order by nombre;");
-$nahualesNav = $conn->query("SELECT nombre FROM tiempo_maya.nahual order by nombre;");
-$energiasNav = $conn->query("SELECT nombre FROM tiempo_maya.energia order by id;");
-$periodosNav = $conn->query("SELECT nombre FROM tiempo_maya.periodo order by orden ;");
+$uinalesNav = $conn->query("SELECT nombre FROM tiempomaya.uinal order by nombre;");
+$nahualesNav = $conn->query("SELECT nombre FROM tiempomaya.nahual order by nombre;");
+$energiasNav = $conn->query("SELECT nombre FROM tiempomaya.energia order by id;");
+$periodosNav = $conn->query("SELECT nombre FROM tiempomaya.periodo order by orden ;");
 
 ?>
 <?php include "../mensaje.php"; ?>
@@ -29,13 +29,29 @@ $periodosNav = $conn->query("SELECT nombre FROM tiempo_maya.periodo order by ord
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <li>
                   <button type="button" style="opacity: 0; height: 0;" class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Kin
+                  </button>
+                  <a class="nav-link" href="../models/paginaModeloElemento.php?elemento=kin" style="font-size: 13px;">Kines </a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <div div style="width: 200px; height: 400px; overflow-y: scroll;">
+                      <?php if (is_array($kinesNav) || is_object($kinesNav)) {
+                        foreach ($kinesNav as $kin) {
+                          echo "<li class='nav-item'><a class='nav-link' href='../models/paginaModeloElemento.php?elemento=kin#" . str_replace("'","",$kin['nombre']) . "'>" . $kin['nombre'] . "</a></li>";
+                        }
+                      } ?>
+                  </ul>
+                </li>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li>
+                  <button type="button" style="opacity: 0; height: 0;" class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Uinal
                   </button>
                   <a class="nav-link" href="#" style="font-size: 13px;">Uniales </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <div div style="width: 200px; height: 400px; overflow-y: scroll;">
                       <?php foreach ($uinalesNav as $uinal) {
-                        echo "<li class='nav-item'><a class='nav-link' href='paginaModeloElemento.php?elemento=uinal#" . $uinal['nombre'] . "'>" . $uinal['nombre'] . "</a></li>";
+                        echo "<li class='nav-item'><a class='nav-link' href='paginaModeloElemento.php?elemento=uinal#" . str_replace("'","",$uinal['nombre']) . "'>" . $uinal['nombre'] . "</a></li>";
                       } ?>
                   </ul>
                 </li>
@@ -57,7 +73,7 @@ $periodosNav = $conn->query("SELECT nombre FROM tiempo_maya.periodo order by ord
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <div div style="width: 200px; height: 400px; overflow-y: scroll;">
                       <?php foreach ($nahualesNav as $nahual) {
-                        echo "<li class='nav-item'><a class='nav-link' href='paginaModeloElemento.php?elemento=nahual#" . $nahual['nombre'] . "'>" . $nahual['nombre'] . "</a></li>";
+                        echo "<li class='nav-item'><a class='nav-link' href='paginaModeloElemento.php?elemento=nahual#" . str_replace("'","",$nahual['nombre']) . "'>" . $nahual['nombre'] . "</a></li>";
                       } ?>
                     </div>
                   </ul>
@@ -70,7 +86,7 @@ $periodosNav = $conn->query("SELECT nombre FROM tiempo_maya.periodo order by ord
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <div div style="width: 200px; height:400px; overflow-y: scroll;">
                       <?php foreach ($energiasNav as $energia) {
-                        echo "<li class='nav-item'><a class='nav-link' href='paginaModeloElemento.php?elemento=energia#" . $energia['nombre'] . "'>" . $energia['nombre'] . "</a></li>";
+                        echo "<li class='nav-item'><a class='nav-link' href='paginaModeloElemento.php?elemento=energia#" . str_replace("'","",$energia['nombre']) . "'>" . $energia['nombre'] . "</a></li>";
                       } ?>
                     </div>
                   </ul>

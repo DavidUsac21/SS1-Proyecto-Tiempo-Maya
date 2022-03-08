@@ -3,9 +3,9 @@
 
 $conn = include '../conexion/conexion.php';
 $pagina = $_GET['pagina'];
-$informacion = $conn->query("SELECT htmlCodigo,seccion,nombre FROM tiempo_maya.pagina WHERE categoria='" . $pagina . "' order by orden;");
-$secciones = $conn->query("SELECT seccion FROM tiempo_maya.pagina WHERE categoria='" . $pagina . "' group by seccion  order by orden;");
-$elementos = $conn->query("SELECT nombre FROM tiempo_maya.pagina WHERE categoria='" . $pagina . "' AND nombre!='Informacion' AND seccion!='Informacion' order by orden;");
+$informacion = $conn->query("SELECT htmlCodigo,seccion,nombre FROM tiempomaya.pagina WHERE categoria='" . $pagina . "' order by orden;");
+$secciones = $conn->query("SELECT seccion FROM tiempomaya.pagina WHERE categoria='" . $pagina . "' group by seccion  order by orden;");
+$elementos = $conn->query("SELECT nombre FROM tiempomaya.pagina WHERE categoria='" . $pagina . "' AND nombre!='Informacion' AND seccion!='Informacion' order by orden;");
 
 
 
@@ -29,8 +29,7 @@ $elementos = $conn->query("SELECT nombre FROM tiempo_maya.pagina WHERE categoria
 <body>
     <section id="inicio">
         <div id="inicioContainer" class="inicio-container">
-
-            <?php echo "<h1>" . $pagina . " </h1>";
+            <?php echo "<h1 id=\"".$pagina."\">" . $pagina . " </h1>";
             foreach ($secciones as $seccion) {
                 echo " <a href='#" . $seccion['seccion'] . "' class='btn-get-started'>" . $seccion['seccion'] . "</a>";
             }
@@ -54,13 +53,13 @@ $elementos = $conn->query("SELECT nombre FROM tiempo_maya.pagina WHERE categoria
                 foreach ($elementos as $elemento) {
                     if ($elemento['nombre'] != 'Uayeb' && $elemento['nombre'] == $info['nombre']) {
                         $tabla = strtolower($elemento['nombre']);
-                        $elementosEl = $conn->query("SELECT nombre FROM tiempo_maya." . $tabla . ";");
+                        $elementosEl = $conn->query("SELECT nombre FROM tiempomaya." . $tabla . ";");
                         $stringPrint .= "<ul>";
                         foreach ($elementosEl as $el) {
                             if ($el['nombre'] == "Informacion") {
                                 $stringPrint .= "<li> <a href='#'>" . $el['nombre'] . " </a> </li>";
                             } else {
-                                $stringPrint .= "<li> <a href='paginaModeloElemento.php?elemento=" . $info['nombre'] . "#" . $el['nombre'] . "'>" . $el['nombre'] . " </a> </li>";
+                                $stringPrint .= "<li> <a href='paginaModeloElemento.php?elemento=" .str_replace("'",'',$info['nombre']). "#" . $el['nombre'] . "'>" . $el['nombre'] . " </a> </li>";
                             }
                         }
                         $stringPrint .= "</ul>";

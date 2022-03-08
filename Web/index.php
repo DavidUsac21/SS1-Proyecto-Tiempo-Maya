@@ -12,6 +12,7 @@ $nahual = include 'backend/buscar/conseguir_nahual_nombre.php';
 $energia = include 'backend/buscar/conseguir_energia_numero.php';
 $haab = include 'backend/buscar/conseguir_uinal_nombre.php';
 $cuenta_larga = include 'backend/buscar/conseguir_fecha_cuenta_larga.php';
+$nahual1 = $nahual;
 $cholquij = $nahual." ". strval($energia);
 
 ?>
@@ -38,8 +39,16 @@ $cholquij = $nahual." ". strval($energia);
     <div id="inicioContainer" class="inicio-container">
       <h1><br><br>Bienvenido al Tiempo Maya</h1>
       <div id='formulario' style="padding: 15px; width: auto;">
-      <h5 style="color: whitesmoke;">Calendario Haab : <?php echo isset($haab) ? $haab : ''; ?></h5>
-      <h5 style="color: whitesmoke;">Calendario Cholquij : <?php echo isset($cholquij) ? $cholquij : ''; ?></h5>
+      <h5 style="color: whitesmoke;">Calendario Haab : <?php echo isset($haab[0]) ? $haab[0] : ''; ?>
+           <?php $out = "<a href=\"models/paginaModeloElemento.php?elemento=uinal#".str_replace("'",'',$haab[1])."\">     <img src=\"./imagenes/uinal/".$haab[1].".png\" width=\"50\"></a>"; 
+      echo $out;
+      ?>
+    </h5>
+      <h5 style="color: whitesmoke;">Calendario Cholquij : <?php echo isset($cholquij) ? $cholquij : ''; ?>
+           <?php $out1 = "<a href=\"models/paginaModeloElemento.php?elemento=nahual#".str_replace("'",'',$nahual1)."\">     <img src=\"./imagenes/nahual/".$nahual1.".png\" width=\"50\"></a>";
+      echo $out1;
+      ?>
+    </h5>
       <h5 style="color: whitesmoke;">Cuenta Larga : <?php echo isset($cuenta_larga) ? $cuenta_larga : ''; ?></h5>
       <label style="color: whitesmoke;"><?php echo isset($fecha_consultar) ? $fecha_consultar : ''; ?></label>
 </div>
